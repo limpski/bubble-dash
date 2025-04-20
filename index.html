@@ -6,7 +6,6 @@
     <style>
       body {
         margin: 0;
-        padding: 0;
         overflow: hidden;
         background-color: #001f2e;
       }
@@ -18,8 +17,7 @@
   </head>
   <body>
     <script>
-      let player;
-      let enemies = [];
+      let player, enemies = [];
       let goalY = 20;
       let bgImg, playerImg, enemyImg;
 
@@ -31,7 +29,6 @@
 
       function setup() {
         createCanvas(600, 400);
-        imageMode(CENTER); // Ensure images draw from center
         player = new Player();
         for (let i = 0; i < 5; i++) {
           enemies.push(new Enemy(random(width), 60 + i * 60, random(1, 3)));
@@ -39,10 +36,14 @@
       }
 
       function draw() {
-        // ✅ Clear the canvas every frame
-        background(bgImg);
+        // 🧼 Clear canvas with full-size background image
+        imageMode(CORNER);
+        image(bgImg, 0, 0, width, height);
 
-        // Draw goal zone
+        // 🎯 Set image mode for centered drawing
+        imageMode(CENTER);
+
+        // 🎯 Draw goal zone
         fill(255, 255, 255, 100);
         noStroke();
         ellipse(width / 2, goalY, 100, 40);
@@ -124,7 +125,6 @@
     </script>
   </body>
 </html>
-
 
 
 
