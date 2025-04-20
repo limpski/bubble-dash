@@ -21,6 +21,11 @@
       let player;
       let enemies = [];
       let goalY = 20;
+      let bgImg;
+
+      function preload() {
+        bgImg = loadImage("background.png"); // ✅ Use your PNG image
+      }
 
       function setup() {
         createCanvas(600, 400);
@@ -31,8 +36,9 @@
       }
 
       function draw() {
-        background(0, 60, 100);
-        fill(100, 200, 255, 100);
+        background(bgImg);
+
+        fill(255, 255, 255, 100);
         noStroke();
         ellipse(width / 2, goalY, 100, 40);
 
@@ -115,5 +121,6 @@
     </script>
   </body>
 </html>
+
 
 
