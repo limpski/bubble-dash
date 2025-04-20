@@ -21,10 +21,12 @@
       let player;
       let enemies = [];
       let goalY = 20;
-      let bgImg;
+      let bgImg, playerImg, enemyImg;
 
       function preload() {
-        bgImg = loadImage("background.png"); // ✅ Use your PNG image
+        bgImg = loadImage("background.png");  // Background image
+        playerImg = loadImage("diver.png");   // Smiley scuba diver
+        enemyImg = loadImage("shark.png");    // Shark enemy
       }
 
       function setup() {
@@ -38,6 +40,7 @@
       function draw() {
         background(bgImg);
 
+        // Treasure goal zone
         fill(255, 255, 255, 100);
         noStroke();
         ellipse(width / 2, goalY, 100, 40);
@@ -71,7 +74,7 @@
 
       class Player {
         constructor() {
-          this.size = 30;
+          this.size = 50;
           this.reset();
         }
 
@@ -89,8 +92,8 @@
         update() {}
 
         show() {
-          fill(255);
-          ellipse(this.pos.x, this.pos.y, this.size);
+          imageMode(CENTER);
+          image(playerImg, this.pos.x, this.pos.y, this.size, this.size);
         }
 
         hits(enemy) {
@@ -103,7 +106,7 @@
         constructor(x, y, speed) {
           this.pos = createVector(x, y);
           this.speed = speed;
-          this.size = 30;
+          this.size = 50;
         }
 
         update() {
@@ -114,8 +117,8 @@
         }
 
         show() {
-          fill(255, 100, 100);
-          ellipse(this.pos.x, this.pos.y, this.size);
+          imageMode(CENTER);
+          image(enemyImg, this.pos.x, this.pos.y, this.size, this.size);
         }
       }
     </script>
